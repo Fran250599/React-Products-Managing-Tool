@@ -28,7 +28,7 @@ export default function Login() {
       // GET function to search for the user
       const res = await axios.post('http://localhost:8080/users/login', user)
 
-      console.log(res)
+      console.log(res.status)
 
       if (res.status === 401) {
         alert("Contraseña incorrecta")

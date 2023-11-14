@@ -26,9 +26,6 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [role, setRole] = useState('');
-
-
-
    
     // Function to add a user
     const addUser = async () => {
