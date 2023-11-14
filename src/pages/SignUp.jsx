@@ -1,12 +1,20 @@
 
 import React from 'react';
+import { useState } from 'react';
 
 import { Grid, Paper, Avatar, TextField, Button, Typography, Autocomplete} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function SignUp() {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
+
+
 
     const paperStyle = { padding: 20, width: 280, margin: "20px auto" }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
@@ -15,6 +23,25 @@ export default function SignUp() {
     const mainGridStyle = { height: '100vh' }
 
     const options = ['Cajero', 'Gerente', 'Administrador'];
+
+
+    const addUser = async () => {
+      const user = {username, password, password2}
+
+      if (user.password !== user.password2) {
+        alert("Las contraseñas no coinciden")
+        return
+      }
+     
+      const res = await axios.post('http://localhost:8080/users', user)
+      alert("Usuario registrado")
+
+      // Come back to the login page
+      window.location.href = '/'
+    
+    
+    
+    }
   return (
     <>
         <Grid style={mainGridStyle}> 
@@ -24,18 +51,15 @@ export default function SignUp() {
                 <Avatar style={avatarStyle}><LockIcon></LockIcon></Avatar>    
                 <h1>Registrarse</h1>
                 </Grid>
-                <TextField label="Nombre de usuario" style={textFieldStyle} placeholder="Enter username" fullWidth required></TextField>
-                <TextField label="Contraseña" placeholder="Enter password" type="password" fullWidth required></TextField>
-                <TextField label="Repite la contraseña" placeholder="Enter password" type="password" fullWidth required></TextField>
-                <Autocomplete style={textFieldStyle}
-                 options={options}
-                renderInput={(params) => (
-                <TextField {...params} label="Choose an option" />
-                )}
-/>
-                <Link to="/">
-               <Button type="submit" color="primary" style={btnStyle} variant="contained" fullWidth>Registrarse</Button>
-               </Link>
+                <TextField label="Nombre de usuario" style={textFieldStyle} placeholder="Enter username" fullWidth required onChange={e=> setUsername(e.target.value)}></TextField>
+                <TextField label="Contraseña" placeholder="Enter password" type="password" fullWidth required onChange={e=> setPassword(e.target.value)}></TextField>
+                <TextField label="Repite la contraseña" placeholder="Enter password" type="password" fullWidth required onChange={e=>setPassword2(e.target.value)}></TextField>
+                  <Autocomplete style={textFieldStyle} options={options}
+                  renderInput={(params) => (
+                  <TextField {...params} label="Choose an option" />
+                  )}/>
+               <Button type="submit" color="primary" style={btnStyle} variant="contained" fullWidth onClick={addUser}>Registrarse</Button>
+
             </Paper>
 
 
