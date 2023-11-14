@@ -13,6 +13,7 @@ export default function SignUp() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const [role, setRole] = useState('');
 
 
 
@@ -26,7 +27,9 @@ export default function SignUp() {
 
 
     const addUser = async () => {
-      const user = {username, password, password2}
+      const user = {username, password, password2, role}
+
+      console.log(user)
 
       if (user.password !== user.password2) {
         alert("Las contraseñas no coinciden")
@@ -38,10 +41,9 @@ export default function SignUp() {
 
       // Come back to the login page
       window.location.href = '/'
-    
-    
-    
+
     }
+
   return (
     <>
         <Grid style={mainGridStyle}> 
@@ -54,7 +56,9 @@ export default function SignUp() {
                 <TextField label="Nombre de usuario" style={textFieldStyle} placeholder="Enter username" fullWidth required onChange={e=> setUsername(e.target.value)}></TextField>
                 <TextField label="Contraseña" placeholder="Enter password" type="password" fullWidth required onChange={e=> setPassword(e.target.value)}></TextField>
                 <TextField label="Repite la contraseña" placeholder="Enter password" type="password" fullWidth required onChange={e=>setPassword2(e.target.value)}></TextField>
-                  <Autocomplete style={textFieldStyle} options={options}
+                  <Autocomplete style={textFieldStyle} options={options} onChange={(event, newValue) => {
+                    setRole(newValue);
+                  }}
                   renderInput={(params) => (
                   <TextField {...params} label="Choose an option" />
                   )}/>
