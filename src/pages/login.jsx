@@ -37,17 +37,18 @@ export default function Login() {
         alert("Usuario no encontrado")
         return
       } else{
-        alert("Bienvenido")
+        alert("Bienvenido "+ user.username)
       
-        // Come back to the home page
+        // To the home page
         window.location.href = '/home'
       }
-
     }
 
     
   return (
     <>
+
+        {/* All this layout was made with help of Material UI - https://mui.com/ */ }
         <Grid style={mainGridStyle}> 
             
             <Paper elevation={10} style={paperStyle}>

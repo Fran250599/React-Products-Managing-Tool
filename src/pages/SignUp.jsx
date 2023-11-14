@@ -10,6 +10,18 @@ import axios from 'axios';
 
 export default function SignUp() {
 
+  // Styles for the components
+  const paperStyle = { padding: 20, width: 280, margin: "20px auto" }
+  const avatarStyle = { backgroundColor: '#1bbd7e' }
+  const btnStyle = { margin: '8px 0' }
+  const textFieldStyle = { margin: '8px 0' }
+  const mainGridStyle = { height: '100vh' }
+
+  // Options for the autocomplete
+  const options = ['Cajero', 'Gerente', 'Administrador'];
+
+
+  // States for the components
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
@@ -17,15 +29,8 @@ export default function SignUp() {
 
 
 
-    const paperStyle = { padding: 20, width: 280, margin: "20px auto" }
-    const avatarStyle = { backgroundColor: '#1bbd7e' }
-    const btnStyle = { margin: '8px 0' }
-    const textFieldStyle = { margin: '8px 0' }
-    const mainGridStyle = { height: '100vh' }
-
-    const options = ['Cajero', 'Gerente', 'Administrador'];
-
-
+   
+    // Function to add a user
     const addUser = async () => {
       const user = {username, password, password2, role}
 
@@ -44,8 +49,11 @@ export default function SignUp() {
 
     }
 
+
+
   return (
     <>
+    {/* All this layout was made with help of Material UI - https://mui.com/ */ }
         <Grid style={mainGridStyle}> 
             
             <Paper elevation={10} style={paperStyle}>
