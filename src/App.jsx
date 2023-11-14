@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Link } from 'react-router-dom';
+
 
 import Login from './pages/login'
 import SignUp from './pages/SignUp'
