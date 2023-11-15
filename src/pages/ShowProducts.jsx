@@ -5,7 +5,7 @@ import { Grid, Paper, Table } from '@mui/material';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-export default function AddProducts (){
+export default function ShowProducts (){
 
     // Styles for the components
     
@@ -18,6 +18,7 @@ export default function AddProducts (){
     useEffect(() => {
         axios.get('http://localhost:8080/products')
         .then((response) => {
+            console.log(response.data);
             setProducts(response.data);
         });
     }, []);
@@ -28,28 +29,26 @@ export default function AddProducts (){
                 <Grid align="center">
                     <h1>Mostrar productos</h1>
                     <Table>
-                        <thead>
+                        <tr>
+                            <th>PLU</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Descripción</th>
+                            <th>Peso</th>
+                            <th>Stock</th>
+                        </tr>
+                        {products.map((product) => (
                             <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Descripción</th>
-                                <th>Peso</th>
-                                <th>Stock</th>
+                                <td>{product.plu}</td>
+                                <td>{product.name}</td>
+                                <td>{product.price}</td>
+                                <td>{product.stock}</td>
+                                <td>{product.description}</td>
+                                <td>{product.weight}</td>
+                                <td>{product.stock}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {products.map((product) => (
-                                <tr>
-                                    <td>{product.id}</td>
-                                    <td>{product.name}</td>
-                                    <td>{product.price}</td>
-                                    <td>{product.description}</td>
-                                    <td>{product.weight}</td>
-                                    <td>{product.stock}</td>
-                                </tr>
-                            ))}
-                        </tbody>
+                        ))}
                     </Table>
                 </Grid>
             </Paper>
