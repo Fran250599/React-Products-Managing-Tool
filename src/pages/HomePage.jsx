@@ -18,6 +18,9 @@ export default function HomePage (){
                 <Grid align="center">
                 <h1>Bienvenido!</h1>
 
+                <Link to="/login">
+                <Button type="submit" color="primary" style={btnStyle} variant="contained" fullWidth >Login</Button>
+                </Link>
                 <Link to="/buyProducts">
                 <Button type="submit" color="primary" style={btnStyle} variant="contained" fullWidth >Comprar productos</Button>
                 </Link>

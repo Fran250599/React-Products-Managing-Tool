@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 import { Grid, Paper, Avatar, TextField, Button, Typography} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import axios from 'axios';
+import { useUserContext } from '../contexts/UserContext';
+
 
 
 export default function Login() {
-
+    const { login: contextLogin } = useUserContext();
     // Styles for the components
     const paperStyle = { padding: 20, width: 280, margin: "20px auto" }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
@@ -23,26 +25,33 @@ export default function Login() {
 
     // Function to login
     const login = async () => {
-      const user = {username, password}
-      console.log(user)
-      // GET function to search for the user
-      const res = await axios.post('http://localhost:8080/users/login', user)
-
-      console.log(res.status)
-
-      if (res.status === 401) {
-        alert("Contraseña incorrecta")
-        return
-      } else if (res.status === 404) {
-        alert("Usuario no encontrado")
-        return
-      } else{
-        alert("Bienvenido "+ user.username)
-      
-        // To the home page
-        window.location.href = '/home'
+      const userCredentials = { username, password };
+      try {
+        const res = await axios.post('http://localhost:8080/users/login', userCredentials);
+        
+        if (res.status === 200) {
+          // Si el inicio de sesión es exitoso, actualiza el contexto del usuario
+          contextLogin(res.data); // Asumiendo que res.data contiene los datos del usuario
+          
+          // Redirige a la página de inicio
+          window.location.href = '/';
+        } else {
+          // Manejar otros estados de respuesta aquí
+        }
+      } catch (error) {
+        if (error.response) {
+          // Error responses from the server
+          if (error.response.status === 401) {
+            alert("Contraseña incorrecta");
+          } else if (error.response.status === 404) {
+            alert("Usuario no encontrado");
+          }
+        } else {
+          // Other errors
+          console.error("Login error", error);
+        }
       }
-    }
+    };
 
     
   return (
