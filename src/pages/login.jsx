@@ -10,6 +10,7 @@ import { useUserContext } from '../contexts/UserContext';
 
 
 
+
 export default function Login() {
     const { login: contextLogin } = useUserContext();
     // Styles for the components
