@@ -16,14 +16,13 @@ export default function AddProducts (){
     // States for the components
     const [name, setName] = React.useState('');
     const [price, setPrice] = React.useState('');
-    const [quantity, setQuantity] = React.useState('');
+    const [stock, setStock] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [weight, setWeight] = React.useState('');
-    const [stock, setStock] = React.useState('');
 
 
     const addProduct = async () => {
-        const product = {name, price, quantity, description, weight, stock}
+        const product = {name, price, stock, description, weight}
   
         console.log(product)
   
@@ -39,10 +38,9 @@ export default function AddProducts (){
 
                     <TextField style={textFieldStyle} label="Nombre del producto" placeholder="Nombre del producto" onChange={e => setName(e.target.value)}fullWidth required />
                     <TextField style={textFieldStyle} label="Precio" placeholder="Precio" onChange={e => setPrice(e.target.value)} fullWidth required />
-                    <TextField style={textFieldStyle} label="Cantidad" placeholder="Cantidad" onChange={e => setQuantity(e.target.value)} fullWidth required />
+                    <TextField style={textFieldStyle} label="Cantidad" placeholder="Cantidad" onChange={e => setStock(e.target.value)} fullWidth required />
                     <TextField style={textFieldStyle} label="Descripción" placeholder="Descripción" onChange={e => setDescription(e.target.value)} fullWidth required />
                     <TextField style={textFieldStyle} label="Peso" placeholder="Peso" onChange={e => setWeight(e.target.value)} fullWidth required />
-                    <TextField style={textFieldStyle} label="Stock" placeholder="Stock" onChange={e => setStock(e.target.value)} fullWidth required />
 
                     <Button type="submit" color="primary" style={btnStyle} variant="contained" onClick={addProduct} fullWidth >Añadir producto</Button>
 

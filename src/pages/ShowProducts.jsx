@@ -36,7 +36,6 @@ export default function ShowProducts (){
                             <th>Cantidad</th>
                             <th>Descripción</th>
                             <th>Peso</th>
-                            <th>Stock</th>
                         </tr>
                         {products.map((product) => (
                             <tr>
@@ -46,7 +45,6 @@ export default function ShowProducts (){
                                 <td>{product.stock}</td>
                                 <td>{product.description}</td>
                                 <td>{product.weight}</td>
-                                <td>{product.stock}</td>
                             </tr>
                         ))}
                     </Table>
