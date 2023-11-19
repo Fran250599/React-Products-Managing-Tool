@@ -10,6 +10,7 @@ import AddProducts from './pages/AddProducts'
 import ShowProducts from './pages/ShowProducts'
 import EditProducts from './pages/EditProducts'
 import BuyProducts from './pages/BuyProducts'
+import EditProductsForm from './pages/EditProductsForm'
 
 
 
@@ -21,7 +22,8 @@ const router = createBrowserRouter([
   {path: '/addProducts', element: <AddProducts/>},
   {path: '/showProducts', element: <ShowProducts/>},
   {path: '/editProducts', element: <EditProducts/>},
-  {path: '/buyProducts', element: <BuyProducts/>}
+  {path: '/buyProducts', element: <BuyProducts/>},
+  {path: '/editProductsForm', element: <EditProductsForm/>}
 ])
 
 

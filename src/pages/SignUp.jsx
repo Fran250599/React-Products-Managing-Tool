@@ -39,6 +39,8 @@ export default function SignUp() {
       }
      
       const res = await axios.post('http://localhost:8080/users', user)
+
+      console.log(res)
       alert("Usuario registrado")
 
       // Come back to the login page

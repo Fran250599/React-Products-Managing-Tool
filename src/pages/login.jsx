@@ -28,7 +28,11 @@ export default function Login() {
       // GET function to search for the user
       const res = await axios.post('http://localhost:8080/users/login', user)
 
-      console.log(res.status)
+      const data = res.data
+      console.log(data)
+
+      // Save data.role in the local storage
+      localStorage.setItem('role', data.Role)
 
       if (res.status === 401) {
         alert("Contraseña incorrecta")
