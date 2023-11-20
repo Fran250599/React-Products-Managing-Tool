@@ -41,7 +41,7 @@ export default function EditProducts() {
         for (let i = 0; i < products.length; i++) {
             if (products[i].plu === TextFieldValue || products[i].description === TextFieldValue) {
                 productIndex = i;
-                setEditProductForm(true);
+               // setEditProductForm(true);
                 
 
 
