@@ -14,12 +14,14 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({ username: null, password: null, role: null });
 
   // Función para simular el inicio de sesión
-  const login = (username, password) => {
-    // Aquí deberías añadir la lógica para validar las credenciales de usuario
-    // Establecemos un usuario de ejemplo al estado de usuario
-    setUser({ username: username, password: password, role: 'user' });
-  };
-
+  const login = (userData) => {
+    // Establecemos el estado del usuario con los datos obtenidos
+    setUser({
+      username: userData.username, 
+      role: userData.role
+      // No se debe guardar la contraseña en el estado
+    });
+  }
   // Función para cerrar sesión
   const logout = () => {
     // Restablecer el estado del usuario a sus valores iniciales

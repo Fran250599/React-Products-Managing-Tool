@@ -1,7 +1,7 @@
 import { UserProvider } from './contexts/UserContext';
 import { useState } from 'react'
 import './App.css'
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Route, Routes } from 'react-router-dom'
 
 
 import Login from './pages/login'
@@ -13,27 +13,80 @@ import EditProducts from './pages/EditProducts'
 import BuyProducts from './pages/BuyProducts'
 import NavBar from './components/NavBar';
 
-// Create a router and pass routes to it, in this case, React components
 const router = createBrowserRouter([
-  { path: '/', element: <HomePage/> },
-  {path : '/login', element: <Login/>},
-  { path: '/signup', element: <SignUp/> },
-  {path: '/addProducts', element: <AddProducts/>},
-  {path: '/showProducts', element: <ShowProducts/>},
-  {path: '/editProducts', element: <EditProducts/>},
-  {path: '/buyProducts', element: <BuyProducts/>}
-])
+  {
+    path: '/',
+    element: (
+      <>
+        <NavBar />
+        <HomePage />
+      </>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <>
+        <NavBar />
+        <Login />
+      </>
+    ),
+  },
+  {
+    path: '/signup',
+    element: (
+      <>
+        <NavBar />
+        <SignUp />
+      </>
+    ),
+  },
+  {
+    path: '/addProducts',
+    element: (
+      <>
+        <NavBar />
+        <AddProducts />
+      </>
+    ),
+  },
+  {
+    path: '/showProducts',
+    element: (
+      <>
+        <NavBar />
+        <ShowProducts />
+      </>
+    ),
+  },
+  {
+    path: '/editProducts',
+    element: (
+      <>
+        <NavBar />
+        <EditProducts />
+      </>
+    ),
+  },
+  {
+    path: '/buyProducts',
+    element: (
+      <>
+        <NavBar />
+        <BuyProducts />
+      </>
+    ),
+  }
+]);
+
 
 function App() {
   return (
-    <UserProvider>
-      <NavBar/>
-      <RouterProvider router={router}>      
-      
-      <Outlet/>
-      </RouterProvider>  
-    </UserProvider>   
-    
+    <UserProvider> 
+      <RouterProvider router={router}>
+        
+      </RouterProvider>
+    </UserProvider>
   )
 }
 

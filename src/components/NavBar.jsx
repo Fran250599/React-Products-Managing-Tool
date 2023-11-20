@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Typography, IconButton } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom';
 import { UserContext, useUserContext } from '../contexts/UserContext';
 
 const NavBar = () => {
@@ -18,32 +19,56 @@ const NavBar = () => {
     };
   }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar y desmontar.
 
+  const { logout } = useUserContext();
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    logout(); // Esto llamará a la función logout de tu UserProvider
+    navigate('/login'); // Redirigir al usuario a la página de inicio de sesión
+  };
+
 
   const styles = {
     appBar: {
-      backgroundColor: '#061F27', // Dark background color as shown in the image
-      color: '#FFF' // White text color
+      position: 'fixed', // This makes the navbar stick to the top
+      top: 0, // This ensures there is no gap at the top of the page
+      width: '100%', // This makes the navbar stretch across the full width
+      backgroundColor: '#061F27',
+      color: '#FFF',
+      zIndex: 1100, // Ensures the navbar is above other content
+    },
+    toolBar: {
+      display: 'flex',
+      justifyContent: 'space-between', // This will align the navigation and user sections on opposite ends
+    },
+    navLinks: {
+      display: 'flex', // Aligns the links in a row
     },
     link: {
       color: '#FFF',
       textDecoration: 'none',
-      margin: '0 10px', // Spacing between buttons
+      margin: '0 10px',
     },
     userSection: {
-      marginLeft: 'auto', // Pushes the user section to the right
+      display: 'flex', // Aligns the user items in a row
+      alignItems: 'center', // Centers the items vertically
     },
     iconButton: {
-      color: '#FFF', // Icon color
+      color: '#FFF',
     },
   };
 
   return (
-    <AppBar position="static" style={styles.appBar}>
-      <Toolbar>
-        {/* ... tus links y botones ... */}
-      </Toolbar>
-      {/* Sección del widget de usuario */}
-      <div style={styles.userSection}>
+    <AppBar style={styles.appBar}>
+      <Toolbar style={styles.toolBar}>
+        <div style={styles.navLinks}>
+        <Link to="/realizarVenta" style={styles.link}><Button color="inherit">Realizar Venta</Button></Link>
+        <Link to="/consultarProducto" style={styles.link}><Button color="inherit">Consultar Producto</Button></Link>
+        <Link to="/showProducts" style={styles.link}><Button color="inherit">Gestionar Productos</Button></Link>
+        <Link to="/reporteVentas" style={styles.link}><Button color="inherit">Reporte Ventas</Button></Link>
+        <Link to="/bitacoras" style={styles.link}><Button color="inherit">Bitácoras</Button></Link>    
+        </div>
+        <div style={styles.userSection}>
         {user.username !== null ? (
           <>
             <IconButton style={styles.iconButton}>
@@ -52,24 +77,25 @@ const NavBar = () => {
             <Typography variant="h6" component="p">
               {user.username}
             </Typography>
-            <Link to="/logout" style={styles.link}>
-              <Button color="inherit">Logout</Button>
-            </Link>
+            <Button color="inherit" onClick={handleLogout} style={styles.link}>
+              Logout
+            </Button>
           </>
         ) : (
           <>
             <Link to="/login" style={styles.link}>
               <Button color="inherit">Login</Button>
             </Link>
-            <Link to="/register" style={styles.link}>
+            <Link to="/signup" style={styles.link}>
               <Button color="inherit">Register</Button>
             </Link>
           </>
         )}
-      </div>
+        </div>
+      </Toolbar>
     </AppBar>
-  );
-};
+    );
+  };
 
 
 export default NavBar;
