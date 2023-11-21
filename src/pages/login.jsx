@@ -23,30 +23,33 @@ export default function Login() {
 
     // Function to login
     const login = async () => {
-      const user = {username, password}
-      console.log(user)
-      // GET function to search for the user
-      const res = await axios.post('http://localhost:8080/users/login', user)
-
-      const data = res.data
-      console.log(data)
-
-      // Save data.role in the local storage
-      localStorage.setItem('role', data.Role)
-
-      if (res.status === 401) {
-        alert("Contraseña incorrecta")
-        return
-      } else if (res.status === 404) {
-        alert("Usuario no encontrado")
-        return
-      } else{
-        alert("Bienvenido "+ user.username)
-      
-        // To the home page
-        window.location.href = '/home'
+      const user = { username, password };
+    
+      try {
+        const res = await axios.post('http://localhost:8080/users/login', user);
+        const data = res.data;
+        console.log(data);
+    
+        console.log(res.status);
+    
+        alert('Bienvenido ' + user.username);
+        localStorage.setItem('role', data.role); 
+        localStorage.setItem('PLU', data.PLU);
+        window.location.href = '/home';
+    
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          alert('Usuario no encontrado');
+        } else if (error.response && error.response.status === 401) {
+          alert('Usuario o contraseña incorrectos');
+        } else {
+          console.error('An error occurred:', error);
+          alert('An error occurred while processing your request');
+        }
       }
-    }
+    };
+    
+    
 
     
   return (
