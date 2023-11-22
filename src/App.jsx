@@ -1,6 +1,7 @@
+import { UserProvider } from './contexts/UserContext';
 import { useState } from 'react'
 import './App.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Route, Routes } from 'react-router-dom'
 
 
 import Login from './pages/login'
@@ -10,28 +11,82 @@ import AddProducts from './pages/AddProducts'
 import ShowProducts from './pages/ShowProducts'
 import EditProducts from './pages/EditProducts'
 import BuyProducts from './pages/BuyProducts'
+import NavBar from './components/NavBar';
 
-
-
-// Create a router and pass routes to it, in this case, React components
 const router = createBrowserRouter([
-  { path: '/', element: <Login/> },
-  {path : '/home', element: <HomePage/>},
-  { path: '/signup', element: <SignUp/> },
-  {path: '/addProducts', element: <AddProducts/>},
-  {path: '/showProducts', element: <ShowProducts/>},
-  {path: '/editProducts', element: <EditProducts/>},
-  {path: '/buyProducts', element: <BuyProducts/>}
-])
-
+  {
+    path: '/',
+    element: (
+      <>
+        <NavBar />
+        <HomePage />
+      </>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <>
+        <NavBar />
+        <Login />
+      </>
+    ),
+  },
+  {
+    path: '/signup',
+    element: (
+      <>
+        <NavBar />
+        <SignUp />
+      </>
+    ),
+  },
+  {
+    path: '/addProducts',
+    element: (
+      <>
+        <NavBar />
+        <AddProducts />
+      </>
+    ),
+  },
+  {
+    path: '/showProducts',
+    element: (
+      <>
+        <NavBar />
+        <ShowProducts />
+      </>
+    ),
+  },
+  {
+    path: '/editProducts',
+    element: (
+      <>
+        <NavBar />
+        <EditProducts />
+      </>
+    ),
+  },
+  {
+    path: '/buyProducts',
+    element: (
+      <>
+        <NavBar />
+        <BuyProducts />
+      </>
+    ),
+  }
+]);
 
 
 function App() {
-
   return (
-    <>
-      <RouterProvider router={router}/>
-    </>
+    <UserProvider> 
+      <RouterProvider router={router}>
+        
+      </RouterProvider>
+    </UserProvider>
   )
 }
 
