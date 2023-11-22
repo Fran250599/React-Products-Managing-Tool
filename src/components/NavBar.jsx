@@ -66,7 +66,7 @@ const NavBar = () => {
     },
 
     {
-      label: "Consultar Producto",
+      label: "Mostrar Productos",
       path: "/showProducts",
       roles: ["Cajero", "Administrador"],
     },

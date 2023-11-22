@@ -149,7 +149,7 @@ export default function BuyProducts() {
           <TableCell>PLU</TableCell>
           <TableCell>Nombre</TableCell>
           <TableCell>Precio</TableCell>
-          <TableCell>Cantidad</TableCell>
+          <TableCell>Cantidad a comprar</TableCell>
           <TableCell>Descripción</TableCell>
           <TableCell>Peso</TableCell>
         </TableRow>
