@@ -68,6 +68,7 @@ export default function BuyProducts() {
     setProductsToBuy([]);
     setTotalPrice(0);
     alert('Productos comprados');
+    window.location.reload();
   };
 
   const buyProduct = (product) => {
