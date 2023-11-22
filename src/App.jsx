@@ -11,6 +11,7 @@ import AddProducts from './pages/AddProducts'
 import ShowProducts from './pages/ShowProducts'
 import EditProducts from './pages/EditProducts'
 import BuyProducts from './pages/BuyProducts'
+import Bill from './pages/Bill'
 import NavBar from './components/NavBar';
 
 const router = createBrowserRouter([
@@ -76,6 +77,15 @@ const router = createBrowserRouter([
         <BuyProducts />
       </>
     ),
+  },
+  {
+    path: '/bill',
+    element: (
+      <>
+        <NavBar />
+        <Bill />
+      </>
+    ),
   }
 ]);
 
@@ -83,6 +93,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <UserProvider> 
+
       <RouterProvider router={router}>
         
       </RouterProvider>

@@ -84,6 +84,11 @@ const NavBar = () => {
       path: "/bitacoras",
       roles: ["Administrador"],
     },
+    {
+        label: "Bill",
+        path: "/bill",
+        roles: ["Administrador"],
+      },
   ];
 
   const filteredMenuItems = menuItems.filter((item) => {
