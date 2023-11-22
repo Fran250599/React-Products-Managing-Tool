@@ -61,17 +61,17 @@ const NavBar = () => {
   const menuItems = [
     {
       label: "Realizar Venta",
-      path: "/realizarVenta",
+      path: "/buyProducts",
       roles: ["Cajero", "Administrador"],
     },
     {
       label: "Consultar Producto",
-      path: "/consultarProducto",
+      path: "/showProducts",
       roles: ["Cajero", "Administrador"],
     },
     {
       label: "Gestionar Productos",
-      path: "/showProducts",
+      path: "/editProducts",
       roles: ["Gerente", "Administrador"],
     },
     {
