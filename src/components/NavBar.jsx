@@ -64,6 +64,7 @@ const NavBar = () => {
       path: "/buyProducts",
       roles: ["Cajero", "Administrador"],
     },
+
     {
       label: "Consultar Producto",
       path: "/showProducts",
@@ -72,6 +73,11 @@ const NavBar = () => {
     {
       label: "Gestionar Productos",
       path: "/editProducts",
+      roles: ["Gerente", "Administrador"],
+    },
+    {
+      label: "Agregar Productos",
+      path: "/addProducts",
       roles: ["Gerente", "Administrador"],
     },
     {
