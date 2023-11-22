@@ -34,7 +34,7 @@ export default function Login() {
         // Actualiza el contexto del usuario con los datos recibidos
         // Asegúrate de no incluir la contraseña
         contextLogin({
-          id: loggedInUserData.id,
+          plu: loggedInUserData.PLU,
           username: loggedInUserData.username,
           // Supongamos que la respuesta debería incluir el rol del usuario, aquí es null
           role: loggedInUserData.role

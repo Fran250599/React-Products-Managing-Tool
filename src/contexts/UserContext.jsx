@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from 'react';
 //Crear el context
 const defaultUser = {
-  username: null, password: null, role: null
+  plu: null, username: null, password: null, role: null
 };
 export const UserContext = createContext(defaultUser);
 
@@ -11,7 +11,7 @@ export const UserContext = createContext(defaultUser);
 //Provider
 export const UserProvider = ({ children }) => {
   // Estado inicial del usuario, donde user es null si nadie está logueado.
-  const [user, setUser] = useState({ username: null, password: null, role: null });
+  const [user, setUser] = useState({ plu: null, username: null, password: null, role: null });
 
   // Función para simular el inicio de sesión
   const login = (userData) => {
@@ -19,14 +19,15 @@ export const UserProvider = ({ children }) => {
     // Establecemos el estado del usuario con los datos obtenidos
     setUser({
       username: userData.username, 
-      role: userData.role
+      role: userData.role,
+      plu: userData.plu
       // No se debe guardar la contraseña en el estado
     });    
   }
   // Función para cerrar sesión
   const logout = () => {
     // Restablecer el estado del usuario a sus valores iniciales
-    setUser({ username: null, password: null, role: null });
+    setUser({ plu: null, username: null, password: null, role: null });
   };
 
   // El valor que el contexto proveerá a los componentes

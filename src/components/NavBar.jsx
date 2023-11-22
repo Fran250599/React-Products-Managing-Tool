@@ -58,16 +58,52 @@ const NavBar = () => {
     },
   };
 
+  const menuItems = [
+    {
+      label: "Realizar Venta",
+      path: "/realizarVenta",
+      roles: ["Cajero", "Administrador"],
+    },
+    {
+      label: "Consultar Producto",
+      path: "/consultarProducto",
+      roles: ["Cajero", "Administrador"],
+    },
+    {
+      label: "Gestionar Productos",
+      path: "/showProducts",
+      roles: ["Gerente", "Administrador"],
+    },
+    {
+      label: "Reporte Ventas",
+      path: "/reporteVentas",
+      roles: ["Administrador"],
+    },
+    {
+      label: "Bitácoras",
+      path: "/bitacoras",
+      roles: ["Administrador"],
+    },
+  ];
+
+  const filteredMenuItems = menuItems.filter((item) => {
+    const role = user.role;
+    return item.roles.includes(role);
+  });
+
   return (
     <AppBar style={styles.appBar}>
       <Toolbar style={styles.toolBar}>
-        <div style={styles.navLinks}>
-        <Link to="/realizarVenta" style={styles.link}><Button color="inherit">Realizar Venta</Button></Link>
-        <Link to="/consultarProducto" style={styles.link}><Button color="inherit">Consultar Producto</Button></Link>
-        <Link to="/showProducts" style={styles.link}><Button color="inherit">Gestionar Productos</Button></Link>
-        <Link to="/reporteVentas" style={styles.link}><Button color="inherit">Reporte Ventas</Button></Link>
-        <Link to="/bitacoras" style={styles.link}><Button color="inherit">Bitácoras</Button></Link>    
+        <div style={styles.navLinks}>        
+            {filteredMenuItems.map((item) => (
+                <Link to={item.path} style={styles.link}>
+                <Button color="inherit">
+                    {item.label}
+                </Button>
+                </Link>
+            ))}
         </div>
+        
         <div style={styles.userSection}>
         {user.username !== null ? (
           <>
