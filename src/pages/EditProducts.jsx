@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Paper, Button, Table, TextField, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 //import EditProductsForm from './EditProductsForm'; // Assuming EditProductsForm is imported from a separate file
-import { useHref } from 'react-router-dom';
+import { Navigate, useHref } from 'react-router-dom';
 
 export default function EditProducts() {
-    
+    const navigate = useNavigate();
     // Styles for the components
     const avatarStyle = { backgroundColor: '#1bbd7e' }
     const btnStyle = { margin: '8px 0' }
@@ -35,14 +37,15 @@ export default function EditProducts() {
             alert('Debe ingresar un PLU o una descripción');
             return;
         }
-
+        
         // Search for the product in the products array
         let productIndex = -1;
         for (let i = 0; i < products.length; i++) {
-            if (products[i].plu === TextFieldValue || products[i].description === TextFieldValue) {
+            if (products[i].plu === parseInt(TextFieldValue) || products[i].description === TextFieldValue) {
                 productIndex = i;
-               // setEditProductForm(true);
-                
+                //setEditProductForm(true);
+                localStorage.setItem('editProduct', JSON.stringify(products[productIndex]));
+                navigate('/addProducts');
 
 
                 break;
